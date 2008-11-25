@@ -7,7 +7,7 @@
 /* #undef HAVE_BUGGY_CAST128 */
 
 /* Define if you enable IPv6 support */
-/* #undef INET6 */
+#define INET6
 
 /* Define if you enable support for the libsmi. */
 /* #undef LIBSMI */
