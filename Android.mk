@@ -37,6 +37,7 @@ LOCAL_SRC_FILES:=\
 	$(tcpdump_CSRC) $(tcpdump_LIBNETDISSECT_SRC) $(tcpdump_LOCALSRC) $(tcpdump_GENSRC)
 
 LOCAL_CFLAGS := -O2 -g
+LOCAL_CFLAGS += -fno-strict-aliasing
 LOCAL_CFLAGS += -DHAVE_CONFIG_H -D_U_="__attribute__((unused))"
 
 LOCAL_C_INCLUDES += \
