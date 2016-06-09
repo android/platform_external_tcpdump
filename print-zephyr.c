@@ -151,11 +151,11 @@ zephyr_print(netdissect_options *ndo, const u_char *cp, int length)
 
 #define PARSE_FIELD_INT(field)			\
 	PARSE_STRING				\
-	if (!lose) field = strtol(s, 0, 16);
+	if (!lose) (field) = strtol(s, 0, 16);
 
 #define PARSE_FIELD_STR(field)			\
 	PARSE_STRING				\
-	if (!lose) field = s;
+	if (!lose) (field) = s;
 
     PARSE_FIELD_STR(z.version);
     if (lose) return;

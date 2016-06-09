@@ -47,8 +47,8 @@
  */
 
 #define SYSTEM_ID_LEN	ETHER_ADDR_LEN
-#define NODE_ID_LEN     SYSTEM_ID_LEN+1
-#define LSP_ID_LEN      SYSTEM_ID_LEN+2
+#define NODE_ID_LEN     (SYSTEM_ID_LEN+1)
+#define LSP_ID_LEN      (SYSTEM_ID_LEN+2)
 
 #define ISIS_VERSION	1
 #define ESIS_VERSION	1

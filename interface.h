@@ -131,7 +131,7 @@ extern int32_t thiszone;	/* seconds offset from gmt to local time */
 
 extern int mask2plen(uint32_t);
 extern const char *tok2strary_internal(const char **, int, const char *, int);
-#define	tok2strary(a,f,i) tok2strary_internal(a, sizeof(a)/sizeof(a[0]),f,i)
+#define	tok2strary(a,f,i) tok2strary_internal(a, sizeof(a)/sizeof((a)[0]),f,i)
 
 extern void error(const char *, ...)
      __attribute__((noreturn))

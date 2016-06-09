@@ -214,11 +214,11 @@
 /*
  * Status return codes for T_UNSPEC conversion routines
  */
-#define CONV_SUCCESS 0
-#define CONV_OVERFLOW -1
-#define CONV_BADFMT -2
-#define CONV_BADCKSUM -3
-#define CONV_BADBUFLEN -4
+#define CONV_SUCCESS     0
+#define CONV_OVERFLOW  (-1)
+#define CONV_BADFMT    (-2)
+#define CONV_BADCKSUM  (-3)
+#define CONV_BADBUFLEN (-4)
 
 /*
  * Structure for query header.

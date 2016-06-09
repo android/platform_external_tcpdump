@@ -48,7 +48,7 @@ typedef struct {
 	uint32_t Major;
 } my_devt;
 
-#define	dev_eq(a,b)	((a.Minor == b.Minor) && (a.Major == b.Major))
+#define	dev_eq(a,b)	(((a).Minor == (b).Minor) && ((a).Major == (b).Major))
 
 /*
  * Many file servers now use a large file system ID.  This is
@@ -60,7 +60,7 @@ typedef	struct {
 	uint32_t fsid_code;
 } my_fsid;
 
-#define	fsid_eq(a,b)	((a.fsid_code == b.fsid_code) &&\
-			 dev_eq(a.Fsid_dev, b.Fsid_dev))
+#define	fsid_eq(a,b)	(((a).fsid_code == (b).fsid_code) &&\
+			 dev_eq((a).Fsid_dev, (b).Fsid_dev))
 
 extern void Parse_fh(const unsigned char *, int, my_fsid *, uint32_t *, const char **, const char **, int);
