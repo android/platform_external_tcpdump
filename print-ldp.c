@@ -229,7 +229,7 @@ static int ldp_pdu_print(netdissect_options *, register const u_char *);
  */
 
 #define TLV_TCHECK(minlen) \
-    ND_TCHECK2(*tptr, minlen); if (tlv_tlen < minlen) goto badtlv;
+    ND_TCHECK2(*tptr, minlen); if (tlv_tlen < (minlen)) goto badtlv;
 
 static int
 ldp_tlv_print(netdissect_options *ndo,

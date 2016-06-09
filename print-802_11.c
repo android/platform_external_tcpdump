@@ -695,32 +695,32 @@ struct radiotap_state
 };
 
 #define PRINT_SSID(p) \
-	if (p.ssid_present) { \
+	if ((p).ssid_present) { \
 		ND_PRINT((ndo, " (")); \
-		fn_print(ndo, p.ssid.ssid, NULL); \
+		fn_print(ndo, (p).ssid.ssid, NULL); \
 		ND_PRINT((ndo, ")")); \
 	}
 
 #define PRINT_RATE(_sep, _r, _suf) \
 	ND_PRINT((ndo, "%s%2.1f%s", _sep, (.5 * ((_r) & 0x7f)), _suf))
 #define PRINT_RATES(p) \
-	if (p.rates_present) { \
+	if ((p).rates_present) { \
 		int z; \
 		const char *sep = " ["; \
-		for (z = 0; z < p.rates.length ; z++) { \
-			PRINT_RATE(sep, p.rates.rate[z], \
-				(p.rates.rate[z] & 0x80 ? "*" : "")); \
+		for (z = 0; z < (p).rates.length ; z++) { \
+			PRINT_RATE(sep, (p).rates.rate[z], \
+				((p).rates.rate[z] & 0x80 ? "*" : "")); \
 			sep = " "; \
 		} \
-		if (p.rates.length != 0) \
+		if ((p).rates.length != 0) \
 			ND_PRINT((ndo, " Mbit]")); \
 	}
 
 #define PRINT_DS_CHANNEL(p) \
-	if (p.ds_present) \
-		ND_PRINT((ndo, " CH: %u", p.ds.channel)); \
+	if ((p).ds_present) \
+		ND_PRINT((ndo, " CH: %u", (p).ds.channel)); \
 	ND_PRINT((ndo, "%s", \
-	    CAPABILITY_PRIVACY(p.capability_info) ? ", PRIVACY" : ""));
+	    CAPABILITY_PRIVACY((p).capability_info) ? ", PRIVACY" : ""));
 
 #define MAX_MCS_INDEX	76
 
@@ -2450,15 +2450,15 @@ ieee802_11_if_print(netdissect_options *ndo,
 	(IEEE80211_CHAN_2GHZ | IEEE80211_CHAN_DYN)
 
 #define	IS_CHAN_FHSS(flags) \
-	((flags & IEEE80211_CHAN_FHSS) == IEEE80211_CHAN_FHSS)
+	(((flags) & IEEE80211_CHAN_FHSS) == IEEE80211_CHAN_FHSS)
 #define	IS_CHAN_A(flags) \
-	((flags & IEEE80211_CHAN_A) == IEEE80211_CHAN_A)
+	(((flags) & IEEE80211_CHAN_A) == IEEE80211_CHAN_A)
 #define	IS_CHAN_B(flags) \
-	((flags & IEEE80211_CHAN_B) == IEEE80211_CHAN_B)
+	(((flags) & IEEE80211_CHAN_B) == IEEE80211_CHAN_B)
 #define	IS_CHAN_PUREG(flags) \
-	((flags & IEEE80211_CHAN_PUREG) == IEEE80211_CHAN_PUREG)
+	(((flags) & IEEE80211_CHAN_PUREG) == IEEE80211_CHAN_PUREG)
 #define	IS_CHAN_G(flags) \
-	((flags & IEEE80211_CHAN_G) == IEEE80211_CHAN_G)
+	(((flags) & IEEE80211_CHAN_G) == IEEE80211_CHAN_G)
 #define	IS_CHAN_ANYG(flags) \
 	(IS_CHAN_PUREG(flags) || IS_CHAN_G(flags))
 
@@ -2824,7 +2824,7 @@ ieee802_11_radio_print(netdissect_options *ndo,
 #define	BITNO_8(x) (((x) >> 4) ? 4 + BITNO_4((x) >> 4) : BITNO_4((x)))
 #define	BITNO_4(x) (((x) >> 2) ? 2 + BITNO_2((x) >> 2) : BITNO_2((x)))
 #define	BITNO_2(x) (((x) & 2) ? 1 : 0)
-#define	BIT(n)	(1U << n)
+#define	BIT(n)	(1U << (n))
 #define	IS_EXTENDED(__p)	\
 	    (EXTRACT_LE_32BITS(__p) & BIT(IEEE80211_RADIOTAP_EXT)) != 0
 

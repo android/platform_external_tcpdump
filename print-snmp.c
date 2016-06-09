@@ -143,11 +143,11 @@ static const char *Context[] = {
 #define REPORT 8
 };
 
-#define NOTIFY_CLASS(x)	    (x == TRAP || x == V2TRAP || x == INFORMREQ)
-#define READ_CLASS(x)       (x == GETREQ || x == GETNEXTREQ || x == GETBULKREQ)
-#define WRITE_CLASS(x)	    (x == SETREQ)
-#define RESPONSE_CLASS(x)   (x == GETRESP)
-#define INTERNAL_CLASS(x)   (x == REPORT)
+#define NOTIFY_CLASS(x)	    ((x) == TRAP || (x) == V2TRAP || (x) == INFORMREQ)
+#define READ_CLASS(x)       ((x) == GETREQ || (x) == GETNEXTREQ || (x) == GETBULKREQ)
+#define WRITE_CLASS(x)	    ((x) == SETREQ)
+#define RESPONSE_CLASS(x)   ((x) == GETRESP)
+#define INTERNAL_CLASS(x)   ((x) == REPORT)
 
 /*
  * Context-specific ASN.1 types for the SNMP Exceptions and their tags
@@ -194,7 +194,7 @@ static const char *ErrorStatus[] = {
 	"inconsistentName"
 };
 #define DECODE_ErrorStatus(e) \
-	( e >= 0 && (size_t)e < sizeof(ErrorStatus)/sizeof(ErrorStatus[0]) \
+	( (e) >= 0 && (size_t)(e) < sizeof(ErrorStatus)/sizeof(ErrorStatus[0]) \
 		? ErrorStatus[e] \
 		: (snprintf(errbuf, sizeof(errbuf), "err=%u", e), errbuf))
 
@@ -212,7 +212,7 @@ static const char *GenericTrap[] = {
 #define GT_ENTERPRISE 6
 };
 #define DECODE_GenericTrap(t) \
-	( t >= 0 && (size_t)t < sizeof(GenericTrap)/sizeof(GenericTrap[0]) \
+	( (t) >= 0 && (size_t)(t) < sizeof(GenericTrap)/sizeof(GenericTrap[0]) \
 		? GenericTrap[t] \
 		: (snprintf(buf, sizeof(buf), "gt=%d", t), buf))
 
@@ -221,7 +221,7 @@ static const char *GenericTrap[] = {
  * Ties together the preceding Universal, Application, Context, and Private
  * type definitions.
  */
-#define defineCLASS(x) { "x", x, sizeof(x)/sizeof(x[0]) } /* not ANSI-C */
+#define defineCLASS(x) { "x", x, sizeof(x)/sizeof((x)[0]) } /* not ANSI-C */
 static const struct {
 	const char	*name;
 	const char	**Id;
@@ -312,10 +312,10 @@ static const struct obj_abrev {
 		} while ((objp = objp->next) != NULL); \
 	} \
 	if (objp) { \
-		ND_PRINT((ndo, suppressdot?"%s":".%s", objp->desc)); \
+		ND_PRINT((ndo, (suppressdot)?"%s":".%s", objp->desc)); \
 		objp = objp->child; \
 	} else \
-		ND_PRINT((ndo, suppressdot?"%u":".%u", (o))); \
+		ND_PRINT((ndo, (suppressdot)?"%u":".%u", (o))); \
 }
 
 /*

@@ -135,8 +135,8 @@ struct olsr_hna6 {
 };
 
 
-#define OLSR_EXTRACT_LINK_TYPE(link_code) (link_code & 0x3)
-#define OLSR_EXTRACT_NEIGHBOR_TYPE(link_code) (link_code >> 2)
+#define OLSR_EXTRACT_LINK_TYPE(link_code) ((link_code) & 0x3)
+#define OLSR_EXTRACT_NEIGHBOR_TYPE(link_code) ((link_code) >> 2)
 
 static const struct tok olsr_link_type_values[] = {
     { 0, "Unspecified" },
@@ -173,7 +173,7 @@ struct olsr_lq_neighbor6 {
  */
 #define VTIME_SCALE_FACTOR    0.0625
 #define ME_TO_DOUBLE(me) \
-  (double)(VTIME_SCALE_FACTOR*(1+(double)(me>>4)/16)*(double)(1<<(me&0x0F)))
+  (double)(VTIME_SCALE_FACTOR*(1+(double)((me)>>4)/16)*(double)(1<<((me)&0x0F)))
 
 /*
  * print a neighbor list with LQ extensions.

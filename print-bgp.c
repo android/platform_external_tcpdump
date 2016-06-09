@@ -478,7 +478,7 @@ as_printf(netdissect_options *ndo,
 	return str;
 }
 
-#define ITEMCHECK(minlen) if (itemlen < minlen) goto badtlv;
+#define ITEMCHECK(minlen) if (itemlen < (minlen)) goto badtlv;
 
 int
 decode_prefix4(netdissect_options *ndo,
@@ -952,13 +952,13 @@ trunc:
  * that case.
  */
 #define UPDATE_BUF_BUFLEN(buf, buflen, strlen) \
-    if (strlen<0) \
-       	buflen=0; \
-    else if ((u_int)strlen>buflen) \
-        buflen=0; \
+    if ((strlen)<0) \
+       	(buflen)=0; \
+    else if ((u_int)(strlen)>(buflen)) \
+        (buflen)=0; \
     else { \
-        buflen-=strlen; \
-	buf+=strlen; \
+        (buflen)-=(strlen); \
+	(buf)+=(strlen); \
     }
 
 static int

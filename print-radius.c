@@ -64,14 +64,14 @@
 
 static const char tstr[] = " [|radius]";
 
-#define TAM_SIZE(x) (sizeof(x)/sizeof(x[0]) )
+#define TAM_SIZE(x) (sizeof(x)/sizeof((x)[0]) )
 
 #define PRINT_HEX(bytes_len, ptr_data)                               \
            while(bytes_len)                                          \
            {                                                         \
-              ND_PRINT((ndo, "%02X", *ptr_data ));                   \
-              ptr_data++;                                            \
-              bytes_len--;                                           \
+              ND_PRINT((ndo, "%02X", *(ptr_data) ));                   \
+              (ptr_data)++;                                            \
+              (bytes_len)--;                                           \
            }
 
 

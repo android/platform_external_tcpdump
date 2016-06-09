@@ -736,7 +736,7 @@ static const char *etypestr[] = {
 };
 
 #define STR_OR_ID(x, tab) \
-	(((x) < sizeof(tab)/sizeof(tab[0]) && tab[(x)])	? tab[(x)] : numstr(x))
+	(((x) < sizeof(tab)/sizeof((tab)[0]) && (tab)[(x)])	? (tab)[(x)] : numstr(x))
 #define PROTOIDSTR(x)	STR_OR_ID(x, protoidstr)
 #define NPSTR(x)	STR_OR_ID(x, npstr)
 #define ETYPESTR(x)	STR_OR_ID(x, etypestr)

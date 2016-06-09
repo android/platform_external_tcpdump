@@ -371,7 +371,7 @@ static const char *enctype[] = {
 };
 
 #define STR_OR_ID(x, tab) \
-	(((x) < sizeof(tab)/sizeof(tab[0]) && tab[(x)]) ? tab[(x)] : numstr(x))
+	(((x) < sizeof(tab)/sizeof((tab)[0]) && (tab)[(x)]) ? (tab)[(x)] : numstr(x))
 
 static char *
 numstr(int x)
@@ -391,11 +391,11 @@ telnet_parse(netdissect_options *ndo, const u_char *sp, u_int length, int print)
 	const u_char *osp, *p;
 #define FETCH(c, sp, length) \
 	do { \
-		if (length < 1) \
+		if ((length) < 1) \
 			goto pktend; \
-		ND_TCHECK(*sp); \
-		c = *sp++; \
-		length--; \
+		ND_TCHECK(*(sp)); \
+		(c) = *(sp)++; \
+		(length)--; \
 	} while (0)
 
 	osp = sp;

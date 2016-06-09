@@ -148,7 +148,7 @@ atm_llc_print(netdissect_options *ndo,
  * Given a SAP value, generate the LLC header value for a UI packet
  * with that SAP as the source and destination SAP.
  */
-#define LLC_UI_HDR(sap)	((sap)<<16 | (sap<<8) | 0x03)
+#define LLC_UI_HDR(sap)	((sap)<<16 | ((sap)<<8) | 0x03)
 
 /*
  * This is the top level routine of the printer.  'p' points

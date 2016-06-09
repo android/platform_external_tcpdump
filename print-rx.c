@@ -1165,13 +1165,13 @@ acl_print(netdissect_options *ndo,
 
 #define ACLOUT(acl) \
 	ND_PRINT((ndo, "%s%s%s%s%s%s%s", \
-	          acl & PRSFS_READ       ? "r" : "", \
-	          acl & PRSFS_LOOKUP     ? "l" : "", \
-	          acl & PRSFS_INSERT     ? "i" : "", \
-	          acl & PRSFS_DELETE     ? "d" : "", \
-	          acl & PRSFS_WRITE      ? "w" : "", \
-	          acl & PRSFS_LOCK       ? "k" : "", \
-	          acl & PRSFS_ADMINISTER ? "a" : ""));
+	          (acl) & PRSFS_READ       ? "r" : "", \
+	          (acl) & PRSFS_LOOKUP     ? "l" : "", \
+	          (acl) & PRSFS_INSERT     ? "i" : "", \
+	          (acl) & PRSFS_DELETE     ? "d" : "", \
+	          (acl) & PRSFS_WRITE      ? "w" : "", \
+	          (acl) & PRSFS_LOCK       ? "k" : "", \
+	          (acl) & PRSFS_ADMINISTER ? "a" : ""));
 
 	for (i = 0; i < pos; i++) {
 		snprintf(fmt, sizeof(fmt), "%%%ds %%d\n%%n", maxsize - 1);
@@ -2856,7 +2856,7 @@ rx_ack_print(netdissect_options *ndo,
 	 * you may or may not see them
 	 */
 
-#define TRUNCRET(n)	if (ndo->ndo_snapend - bp + 1 <= n) return;
+#define TRUNCRET(n)	if (ndo->ndo_snapend - bp + 1 <= (n)) return;
 
 	if (ndo->ndo_vflag > 1) {
 		TRUNCRET(4);
