@@ -12,6 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+package {
+    default_applicable_licenses: ["external_tcpdump_license"],
+}
+
+license {
+    name: "external_tcpdump_license",
+    visibility: [":__subpackages__"],
+    license_kinds: ["SPDX-license-identifier-BSD","SPDX-license-identifier-BSD-4-Clause-UC","SPDX-license-identifier-MIT"],
+    license_text: ["LICENSE"],
+}
+
 cc_binary {
     name: "tcpdump",
     host_supported: false,
